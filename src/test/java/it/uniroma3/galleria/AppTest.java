@@ -52,9 +52,9 @@ public class AppTest {
         op=new Opera("L'opera", autore, tech, nascita, "200*300");
         opere=new ArrayList<Opera>();
         opere.add(op);
-        autore = new Autore("Leonardo","DaVinci", null, null, null, null);
+        autore = new Autore("Leonardo","DaVinci", naz, nascita, nascita, opere);
 
-        service.save(autore);
+        autore=service.save(autore);
     }
 
     @Test
