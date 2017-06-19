@@ -6,24 +6,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Nazionalita")
 public class Nazionalita {
+
+	public Nazionalita(){}
+
+	public Nazionalita(String nation) { this.nazione=nation; }
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	
+	private long id;
+
+	@NotNull
 	private String nazione;
 
 	public String getNazione() {

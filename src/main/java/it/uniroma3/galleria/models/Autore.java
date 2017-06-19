@@ -2,6 +2,7 @@ package it.uniroma3.galleria.models;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,14 +34,14 @@ public class Autore {
 
 	public Autore(){}
 
-	public Autore(String name, String cognome, Nazionalita naz, Date birth, Date death, List<Opera>operaList)
+	public Autore(String name, String cognome, Nazionalita naz, Date birth, Date death)
 	{
 		this.name=name;
 		this.cognome=cognome;
 		this.nazionalita=naz;
 		this.nascita=birth;
 		this.morte=death;
-		this.opere=operaList;
+		this.opere=new ArrayList<>();
 	}
 
 	public long getId() {

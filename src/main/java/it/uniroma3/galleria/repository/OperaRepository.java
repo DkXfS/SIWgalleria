@@ -12,6 +12,10 @@ public interface OperaRepository extends CrudRepository<Opera, Long> {
 
     List<Opera> findAll ();
 
+    List<Opera> getAllByOrderByTitoloAsc();
+
+    List<Opera> findAllByAutore_Id(long Id);
+
     Opera save (Opera opera);
 
     void removeById (long Id);

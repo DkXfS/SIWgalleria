@@ -19,7 +19,7 @@ public class AutoreService {
 
     public List<Autore> get() { return repo.findAll(); }
 
-    public Autore getById(long Id) { return repo.findAutoreByIdEquals(Id); }
+    public Autore find(long Id) { return repo.findAutoreByIdEquals(Id); }
 
     public Autore save(Autore autore){ return repo.save(autore); }
 

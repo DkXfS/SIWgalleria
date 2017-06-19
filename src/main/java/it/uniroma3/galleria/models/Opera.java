@@ -25,20 +25,24 @@ public class Opera {
 	@ManyToOne(cascade = {CascadeType.PERSIST})
 	private Tecnica tecnica;
 	
-	@Temporal(TemporalType.DATE)
-	private Date anno;
+	private int anno;
 	
-	private String dimensioni;
+	private float altezza;
+
+	private float lunghezza;
+
+	private String imageUri;
 
 	public Opera(){}
 
-	public Opera(String title, Autore author, Tecnica technique, Date anno, String dimensions)
+	public Opera(String title, Autore author, Tecnica technique, int anno, float height, float lenght)
 	{
 		this.titolo=title;
 		this.autore=author;
 		this.tecnica=technique;
 		this.anno=anno;
-		this.dimensioni=dimensions;
+		this.altezza=height;
+		this.lunghezza=lenght;
 	}
 	
 	public long getId() {
@@ -73,20 +77,22 @@ public class Opera {
 		this.tecnica = tecnica;
 	}
 
-	public Date getAnno() {
-		return anno;
-	}
+	public int getAnno() {return anno;}
 
-	public void setAnno(Date anno) {
+	public void setAnno(int anno) {
 		this.anno = anno;
 	}
 
-	public String getDimensioni() {
-		return dimensioni;
-	}
+	public float getAltezza() {return altezza;}
 
-	public void setDimensioni(String dimensioni) {
-		this.dimensioni = dimensioni;
-	}
+	public void setAltezza(float altezza) {this.altezza = altezza;}
+
+	public float getLunghezza() {return lunghezza;}
+
+	public void setLunghezza(float lunghezza) {this.lunghezza=lunghezza;}
+
+	public String getImageUri() {return imageUri;}
+
+	public void setImageUri(String imageUri) {this.imageUri = imageUri;}
 
 }
