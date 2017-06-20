@@ -28,7 +28,7 @@ public class OperaService {
 
     public List<Opera> getOrdered() { return repo.getAllByOrderByTitoloAsc(); }
 
-    public Opera find(long Id) { return repo.findOperaByIdEquals(Id); }
+    public Opera find(long Id) { return repo.findOne(Id); }
 
     public Opera save(Opera opera) { return repo.save(opera); }
 
