@@ -36,7 +36,7 @@
                 <a href="#" id="lista" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
             </span>Lista</a>
                 <a href="#" id="griglia" class="btn btn-default btn-sm"><span
-                    class="glyphicon glyphicon-th"></span>Griglia</a> -
+                    class="glyphicon glyphicon-th"></span>Griglia</a>
                 <a  sec:authorize="hasRole('ADMIN')" href="protected/aggiungiOpera" id="griglia" class="btn btn-default btn-sm"><span
                         class="glyphicon glyphicon-picture"></span>Inserisci Opera</a>
 
@@ -50,12 +50,12 @@
 
 
 
-    <div  th:each="opera : ${opere}" id="opere" class="row list-group">
-        <a th:href="@{/opera/{id}(id=${opera.id})}">
-        <div class="item  col-xs-4 col-lg-4">
+    <div   id="opere" class="row list-group">
+
+        <div th:each="opera : ${opere}" class="item  col-xs-4 col-lg-4">
             <div class="thumbnail">
 
-                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"  alt="" />
+                <a th:href="@{/opera/{id}(id=${opera.id})}"><img class="group list-group-image" src="http://placehold.it/400x250/000/fff"  alt="immagine opera" /> </a>
                     <!-- th:src="@{/immagini/{id}(id=${opera.id})}" -->
 
                 <div class="caption">
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        </a>
+
     </div>
 
 
