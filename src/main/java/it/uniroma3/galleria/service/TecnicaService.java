@@ -24,4 +24,6 @@ public class TecnicaService {
     public void removeThroughId(long Id){repo.removeById(Id);}
 
     public Tecnica find(long Id){return repo.findTecnicaById(Id);}
+
+    public Tecnica save(Tecnica tech) { return repo.save(tech); }
 }

@@ -22,7 +22,7 @@ public class Opera {
 	@ManyToOne
 	private Autore autore;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST})
+	@ManyToOne//(cascade = {CascadeType.PERSIST})
 	private Tecnica tecnica;
 	
 	private int anno;
@@ -37,7 +37,7 @@ public class Opera {
 
 	public Opera(){}
 
-	public Opera(String title, Autore author, Tecnica technique, String descr, int anno, float height, float lenght)
+	public Opera(String title, Autore author, Tecnica technique, String descr, int anno, double height, double lenght)
 	{
 		this.titolo=title;
 		this.autore=author;

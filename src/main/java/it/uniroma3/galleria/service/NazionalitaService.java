@@ -19,4 +19,6 @@ public class NazionalitaService
     public List<Nazionalita> get(){ return repo.findAll(); }
 
     public Nazionalita find(long Id) { return repo.findNazionalitaById(Id); }
+
+    public Nazionalita save(Nazionalita nazionalita){ return repo.save(nazionalita); }
 }

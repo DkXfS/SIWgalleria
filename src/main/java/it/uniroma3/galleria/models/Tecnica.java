@@ -15,14 +15,18 @@ public class Tecnica {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String tecnica;
+	private String nome;
+
+	public Tecnica(){}
+
+	public Tecnica(String name){ this.nome=name; }
 
 	public String getNome() {
-		return tecnica;
+		return nome;
 	}
 
 	public void setNome(String tecnica) {
-		this.tecnica = tecnica;
+		this.nome = tecnica;
 	}
 
 	public long getId() {

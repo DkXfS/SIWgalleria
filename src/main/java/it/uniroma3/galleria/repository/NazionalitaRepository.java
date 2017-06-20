@@ -13,4 +13,6 @@ public interface NazionalitaRepository extends CrudRepository<Nazionalita, Long>
     List<Nazionalita> findAll();
 
     Nazionalita findNazionalitaById(long Id);
+
+    Nazionalita save(Nazionalita nazionalita);
 }

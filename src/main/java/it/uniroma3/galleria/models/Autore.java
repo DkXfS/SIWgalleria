@@ -21,7 +21,7 @@ public class Autore {
 	private String name;
 	private String cognome;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST})
+	@ManyToOne//(cascade = {CascadeType.PERSIST})
 	private Nazionalita nazionalita;
 	
 	@OneToMany(mappedBy="autore", cascade = {CascadeType.PERSIST})
