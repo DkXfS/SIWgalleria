@@ -1,7 +1,6 @@
 package it.uniroma3.galleria.controller;
 
 import it.uniroma3.galleria.models.Autore;
-import it.uniroma3.galleria.models.Dummy;
 import it.uniroma3.galleria.models.Nazionalita;
 import it.uniroma3.galleria.models.Opera;
 import it.uniroma3.galleria.service.AutoreService;
@@ -47,13 +46,18 @@ public class IndexController {
         //model.addAttribute("autori", autoreService.get());
         model.addAttribute("tecniche", tecnicaService.get());
         model.addAttribute("nazionalitas", nazionalitaService.get());
-        model.addAttribute("dummy",new Dummy());
-        //List <Opera> oldd = new ArrayList<Opera>();
+        model.addAttribute("dummy",new Opera());
+         List <Opera> oldd = new ArrayList<Opera>();
         //Opera op = new Opera("nome", new Autore("NomeAutore", "CognomeAutore", new Nazionalita(), new Date(),new Date()), null, "Lorem ipsun dolor sit amen e poi un altra frase che descrive l'opera in tutto e per tutto",1900,20,30);
         //op.setId(0);
-        //oldd.add(op);
+         //oldd.add(op);
         //model.addAttribute("opere", oldd);
+
+
         model.addAttribute("opere", operaService.getOrdered());
+
+
+
         return "index";
     }
 
@@ -61,16 +65,15 @@ public class IndexController {
     public String homeWithSearch(Model model, @RequestParam long tecnica, @RequestParam long nazionalita)
     {
         List<Opera> allOpere=operaService.get();
+        List<Opera> selectedOpere = new ArrayList<>();
+
         for(int i=0; i<allOpere.size(); i++)
-        {
-            Opera iteratedOpera=allOpere.get(i);
-            if(!(iteratedOpera.getTecnica().getId()==tecnica && iteratedOpera.getAutore().getNazionalita().getId()==nazionalita))
-                allOpere.remove(iteratedOpera);
-        }
-        model.addAttribute("opere", allOpere);
+            if(allOpere.get(i).getTecnica().getId()==tecnica && allOpere.get(i).getAutore().getNazionalita().getId()==nazionalita)
+                selectedOpere.add(allOpere.get(i));
+
+        model.addAttribute("opere", selectedOpere);
         model.addAttribute("tecniche", tecnicaService.get());
         model.addAttribute("nazionalitas", nazionalitaService.get());
-        model.addAttribute("dummy",new Dummy());
 
         return "index";
     }
