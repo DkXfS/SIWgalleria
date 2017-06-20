@@ -9,26 +9,7 @@
     <link href="css/main.css" th:href="@{css/main.css}" rel="stylesheet"/>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top nav-custom" style="background-color: #1976D2;">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" th:href="@{/}">Art Gallery</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a th:href="@{/admin/welcome}">Home</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <form th:action="@{/logout}" method="post">
-                        <input type="submit" class="btn btn-primary btn-custom" value="Logout"/>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!--form-->
+
 <div class="container container-custom">
     <h2 align="center">Modifica opera</h2>
     <br/>
