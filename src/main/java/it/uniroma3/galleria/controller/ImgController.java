@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 
 import javax.servlet.ServletContext;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 @Controller
 @RequestMapping("/img")
@@ -36,7 +33,13 @@ public class ImgController implements ServletContextAware{
 
             File file = new File(servletContext.getRealPath("/") + "/" + "img/" + Long.parseLong(id) + ".jpg");
 
-            return IOUtils.toByteArray(new FileInputStream(file));
+            try{
+                return IOUtils.toByteArray(new FileInputStream(file));
+            }
+            catch (FileNotFoundException f){
+                return null;
+            }
+
         }
         return null;
 
