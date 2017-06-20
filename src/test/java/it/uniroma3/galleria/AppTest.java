@@ -42,18 +42,20 @@ public class AppTest {
     public void setup()
     {
         naz=new Nazionalita();
-        naz.setNazione("Italia");
+        naz.setNome("Italia");
 
         nascita= new Date ();
 
         tech=new Tecnica();
-        tech.setTecnica("Punterellato");
+        tech.setNome("Puntinismo");
 
+
+/**
         op=new Opera("L'opera", autore, tech, nascita, "200*300");
         opere=new ArrayList<Opera>();
         opere.add(op);
         autore = new Autore("Leonardo","DaVinci", naz, nascita, nascita, opere);
-
+**/
         autore=service.save(autore);
     }
 

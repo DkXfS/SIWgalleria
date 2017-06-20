@@ -105,7 +105,7 @@ public class Autore {
 	{
 		boolean whetherEquals=false;
 		if(autore.getName().equals(this.name) && this.cognome.equals(autore.getCognome()) &&
-				this.nazionalita.getNazione().equals(autore.getNazionalita().getNazione()) &&
+				this.nazionalita.getNome().equals(autore.getNazionalita().getNome()) &&
 				this.nascita.compareTo(autore.getNascita())==0 &&
 				this.opere.get(0).equals(autore.getOpere().get(0)))
 			whetherEquals=true;

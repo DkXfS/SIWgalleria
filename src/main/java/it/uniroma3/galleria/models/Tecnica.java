@@ -10,22 +10,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Tecnica")
 public class Tecnica {
+
 	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
 	private String tecnica;
 
-	public String getTecnica() {
+	public String getNome() {
 		return tecnica;
 	}
 
-	public void setTecnica(String tecnica) {
+	public void setNome(String tecnica) {
 		this.tecnica = tecnica;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

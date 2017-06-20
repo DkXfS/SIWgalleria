@@ -14,7 +14,7 @@ public class Nazionalita {
 
 	public Nazionalita(){}
 
-	public Nazionalita(String nation) { this.nazione=nation; }
+	public Nazionalita(String nation) { this.nome=nation; }
 	
 	public long getId() {
 		return id;
@@ -30,14 +30,14 @@ public class Nazionalita {
 	private long id;
 
 	@NotNull
-	private String nazione;
+	private String nome;
 
-	public String getNazione() {
-		return nazione;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNazione(String nazione) {
-		this.nazione = nazione;
+	public void setNome(String nazione) {
+		this.nome = nazione;
 	}
 	
 	

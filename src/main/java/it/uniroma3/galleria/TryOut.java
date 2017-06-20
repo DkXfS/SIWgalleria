@@ -23,6 +23,7 @@ public class TryOut {
 
     public TryOut()
     {
+        /**
         naz=new Nazionalita();
         naz.setNazione("Italia");
 
@@ -34,5 +35,7 @@ public class TryOut {
         op=new Opera("L'opera", autore, tech, nascita, "200*300");
         opere.add(op);
         autore = new Autore("Leonardo","DaVinci", naz, nascita, nascita, opere);
+         */
+
     }
 }

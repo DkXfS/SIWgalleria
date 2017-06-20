@@ -1,16 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"/>
-    <title>SIWgalleria Test Page</title>
+    <title>Siw Galleria</title>
+
+
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+
+          rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+
+    />
+
+    <link href="css/main.css"
+          th:href="@{css/main.css}" rel="stylesheet"/>
+
+
 </head>
 <body>
-<h1>Inserimento Autore</h1>
-<form action="/save" method="post" enctype="multipart/form-data">
-    <p> Nome: <input type="text" name="nome"/> </p>
-    <p> Cognome: <input type="text" name="cognome"/> </p>
-    <p> Anno: <input type="text" name="anno"/>  </p>
-    <input type="submit" value="Aggiungi"/>
-</form>
+<div class="container">
+
+    <div id="imgheader">
+        <img src="logo.png" alt="siw gallery" class="img-responsive center-block" />
+    </div>
+
+    <div class="well well-sm">
+
+
+        <form action="#" th:action="@{/opere/filtro}" enctype="multipart/form-data"
+              method="post">
+            <strong>Filtri: </strong>
+            <div class="btn-group">
+                <a href="#" id="lista" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>Lista</a> <a href="#" id="griglia" class="btn btn-default btn-sm"><span
+                    class="glyphicon glyphicon-th"></span>Griglia</a>
+            </div>
+            <div class="form-group">
+
+<!--                <select th:field="*{tecnica}" class="form-control" name="tecnica">
+                    <option th:each="tecnica : ${tecniche}" th:value="${tecnica.id}"
+                            th:text="${tecnica.nome}"></option>
+                </select>-->
+
+
+
+            </div>
+        </form >
+
+
+    </div>
+
+
+
+
+    <div  th:each="opera : ${opere}" id="opere" class="row list-group">
+        <a th:href="@{/opera/{id}(id=${opera.id})}">
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+
+                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"  alt="" />
+                    <!-- th:src="@{/immagini/{id}(id=${opera.id})}" -->
+
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading" th:text="${opera.NomeAutoreCompleto}"></h4>
+                    <p class="group inner list-group-item-text" th:text="${opera.descrizione}"></p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                           <!-- <a th:href="@{/opera/{id}(id=${opera.id})}">Dettagli</a>-->
+                        </div>
+                        <div class="btn-corner" sec:authorize="isAuthenticated()">
+                            <a class="btn btn-default" th:href="@{/opera/modifica/{id}(id=${opera.id})}">Modifica</a>
+                            <a class="btn btn-danger" th:href="@{/opera/elimina/{id}(id=${opera.id})}">Elimina</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </div>
+
+
+</div>
+<script>
+    $(document).ready(function() {
+        $('#lista').click(function(event){event.preventDefault();$('#opere .item').addClass('list-group-item');});
+        $('#griglia').click(function(event){event.preventDefault();$('#opere .item').removeClass('list-group-item');$('#opere .item').addClass('grid-group-item');});
+    });
+</script>
 </body>
 </html>

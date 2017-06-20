@@ -41,7 +41,7 @@ public class OperaController
         return "aggiungiOpera";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/salva")
     public String salvaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId)
     {
         if(bindingResult.hasErrors())
@@ -63,3 +63,8 @@ public class OperaController
         return "admin/welcome";
     }
 }
+
+
+
+
+

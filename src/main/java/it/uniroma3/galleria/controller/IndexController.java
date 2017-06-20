@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sun.jvm.hotspot.debugger.win32.coff.OptionalHeaderWindowsSpecificFields;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,7 +46,17 @@ public class IndexController {
         //model.addAttribute("autori", autoreService.get());
         model.addAttribute("tecniche", tecnicaService.get());
         model.addAttribute("nazionalitas", nazionalitaService.get());
-        model.addAttribute("opere", operaService.getOrdered());
+         List <Opera> oldd = new ArrayList<Opera>();
+        Opera op = new Opera("nome", new Autore("NomeAutore", "CognomeAutore", new Nazionalita(), new Date(),new Date()), null, "Lorem ipsun dolor sit amen e poi un altra frase che descrive l'opera in tutto e per tutto",1900,20,30);
+        op.setId(0);
+         oldd.add(op);
+        model.addAttribute("opere", oldd);
+
+
+        //model.addAttribute("opere", operaService.getOrdered());
+
+
+
         return "index";
     }
 

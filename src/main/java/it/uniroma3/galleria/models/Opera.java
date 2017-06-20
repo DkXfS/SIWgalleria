@@ -31,11 +31,13 @@ public class Opera {
 
 	private float lunghezza;
 
+	private String descrizione;
+
 	private String imageUri;
 
 	public Opera(){}
 
-	public Opera(String title, Autore author, Tecnica technique, int anno, float height, float lenght)
+	public Opera(String title, Autore author, Tecnica technique, String descr, int anno, float height, float lenght)
 	{
 		this.titolo=title;
 		this.autore=author;
@@ -43,6 +45,7 @@ public class Opera {
 		this.anno=anno;
 		this.altezza=height;
 		this.lunghezza=lenght;
+		this.descrizione = descr;
 	}
 	
 	public long getId() {
@@ -94,5 +97,16 @@ public class Opera {
 	public String getImageUri() {return imageUri;}
 
 	public void setImageUri(String imageUri) {this.imageUri = imageUri;}
+
+	public String getDescrizione() {return descrizione;}
+
+	public String getNomeAutoreCompleto(){
+		if(autore!=null)
+		return autore.getName() + " " + autore.getCognome();
+		else
+			return "";
+	}
+
+	public void setDescrizione(String descrizione) {this.descrizione = descrizione;}
 
 }
