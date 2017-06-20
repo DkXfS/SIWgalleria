@@ -29,25 +29,28 @@ public class OperaController {
     @Autowired
     TecnicaService tecnicaService;
 
-    @GetMapping("/addPainting")
+    @GetMapping("/aggiunta")
     public String aggiungiOpera(Model model) {
         model.addAttribute("autori", autoreService.get());
         model.addAttribute("tecniche", tecnicaService.get());
         model.addAttribute("opera", new Opera());
-        return "aggiungiOpera";
+        return "formOperaSave";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/aggiunta")
     public String salvaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || file.isEmpty())
+        {
+            if(file.isEmpty())
+                model.addAttribute("immaginegNonInserita",true);
             model.addAttribute("autori", autoreService.get());
             model.addAttribute("tecniche", tecnicaService.get());
-            model.addAttribute("opera", opera);
+            return "formOperaSave";
         }
         opera.setAutore(autoreService.find(autoreId));
         opera.setTecnica(tecnicaService.find(tecnicaId));
-        operaService.save(opera, file);
-        return "fineAggiuntaOpera";
+        Opera operaSalvata=operaService.save(opera, file);
+        return dettagliOperaDopoSave(operaSalvata,model);
     }
 
     @GetMapping("/elimina/{id}")
@@ -63,20 +66,36 @@ public class OperaController {
         model.addAttribute("opera", operaService.find(id));
         model.addAttribute("autori", autoreService.get());
         model.addAttribute("tecniche", tecnicaService.get());
-        return "aggiungiOpera";
+        return "formOperaUpdate";
     }
 
-    @PostMapping("/modifica/{id}")
-    public String salvaModificaOpera(@PathVariable long id, @RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId)
+    @PostMapping("/modifica")
+    public String salvaModificaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId)
     {
-
-        return dettagliOpera(id, model);
+        if (bindingResult.hasErrors() || file.isEmpty())
+        {
+            if(file.isEmpty())
+                model.addAttribute("immaginegNonInserita",true);
+            model.addAttribute("autori", autoreService.get());
+            model.addAttribute("tecniche", tecnicaService.get());
+            return "formOperaUpdate";
+        }
+        opera.setAutore(autoreService.find(autoreId));
+        opera.setTecnica(tecnicaService.find(tecnicaId));
+        Opera operaSalvata=operaService.save(opera, file);
+        return dettagliOperaDopoSave(operaSalvata,model);
     }
 
     @GetMapping("/{id}")
     public String dettagliOpera(@PathVariable long id, Model model)
     {
         model.addAttribute("opera", operaService.find(id));
-        return "visualizzazioneOpera";
+        return "dettagliOpera";
+    }
+
+    public String dettagliOperaDopoSave(Opera opera, Model model)
+    {
+        model.addAttribute("opera", opera);
+        return "dettagliOpera";
     }
 }

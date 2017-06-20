@@ -75,14 +75,4 @@ public class IndexController {
         model.addAttribute("nazionalitas", nazionalitaService.get());
         return "index";
     }
-
-    @PostMapping(value={"save"})
-    public String salvaAutore(@RequestParam String nome, @RequestParam String cognome, @RequestParam String anno)
-    {
-        Autore a=new Autore(nome, cognome, null, null, null);
-        a=autoreService.save(a);
-        if(autoreService.get().size()==1)
-            return "success";
-        else return "fail";
-    }
 }
