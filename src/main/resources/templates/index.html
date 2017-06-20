@@ -32,30 +32,20 @@
     <div class="well well-sm">
 
 
-        <form action="#" th:action="@{/opere/filtro}" enctype="multipart/form-data"
-              method="post">
-            <strong>Filtri: </strong>
             <div class="btn-group">
                 <a href="#" id="lista" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>Lista</a> <a href="#" id="griglia" class="btn btn-default btn-sm"><span
-                    class="glyphicon glyphicon-th"></span>Griglia</a>
-
-                <div class="btn-corner" sec:authorize="hasRole('ADMIN')"> <a class="btn btn-default" href="protected/aggiungiOpera">Aggiungi Opera</a></div>
-            </div>
-            <div class="form-group">
-
-<!--                <select th:field="*{tecnica}" class="form-control" name="tecnica">
-                    <option th:each="tecnica : ${tecniche}" th:value="${tecnica.id}"
-                            th:text="${tecnica.nome}"></option>
-                </select>-->
-
-
+            </span>Lista</a>
+                <a href="#" id="griglia" class="btn btn-default btn-sm"><span
+                    class="glyphicon glyphicon-th"></span>Griglia</a> -
+                <a  sec:authorize="hasRole('ADMIN')" href="protected/aggiungiOpera" id="griglia" class="btn btn-default btn-sm"><span
+                        class="glyphicon glyphicon-picture"></span>Inserisci Opera</a>
 
             </div>
-        </form >
-
-
     </div>
+
+
+
+
 
 
 
