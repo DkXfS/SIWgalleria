@@ -1,11 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Siw Galleria</title>
+        <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+        <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+        <link href="css/main.css" th:href="@{css/main.css}" rel="stylesheet"/>
 </head>
 <body>
 
+<div class="container">
+    <h2 align="center">Inserimento dati quadro</h2>
+    <br/>
+    <form action="#" th:action="@{/protected/aggiungiOpera}" th:object="${opera}" enctype="multipart/form-data"
+          method="post">
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label class="col-sm-2 control-label">Nome Opera:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" name="titolo" th:field="*{titolo}"/>
+                </div>
+                <div class="col-sm-2" th:if="${#fields.hasErrors('titolo')}" th:errors="*{titolo}">Error nome</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label class="col-sm-2 control-label">Anno di realizzazione:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" name="anno" th:field="*{anno}"/>
+                </div>
+                <div class="col-sm-2" th:if="${#fields.hasErrors('anno')}" th:errors="*{anno}">Error anno</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label class="col-sm-2 control-label">Altezza opera:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" name="altezza" th:field="*{altezza}"/>
+                </div>
+                <div class="col-sm-2" th:if="${#fields.hasErrors('altezza')}" th:errors="*{altezza}">Error altezza
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label class="col-sm-2 control-label">Larghezza opera (cm):</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" name="larghezza" th:field="*{larghezza}"/>
+                </div>
+                <div class="col-sm-2" th:if="${#fields.hasErrors('larghezza')}" th:errors="*{larghezza}">Error
+                    larghezza
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label class="col-sm-2 control-label">Autori:</label>
+                <div class="col-sm-8">
+                    <select th:field="*{autore}" class="form-control" name="autore">
+                        <option th:each="autore : ${autori}" th:value="${autore.id}"
+                                th:text="${autore.name + ' ' + autore.cognome}"></option>
+                    </select>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label class="col-sm-2 control-label">Tecniche:</label>
+                <div class="col-sm-8">
+                    <select th:field="*{tecnica}" class="form-control" name="tecnica">
+                        <option th:each="tecnica : ${tecniche}" th:value="${tecnica.id}"
+                                th:text="${tecnica.nome}"></option>
+                    </select>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label class="col-sm-2 control-label">Carica una immagine (400x300):</label>
+                <div class="col-sm-8">
+                    <input type="file" name="file"/>
+                </div>
+                <div class="col-sm-2" th:if="${imgNonInserita}">Campo obbligatorio</div>
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="form-group col-sm-12">
+                <input class="btn btn-primary" type="submit" value="Invia"/>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>
-<!-- al GET opera/save devono essere passate le info sugli autori ecc. anche al  submit  POST opera/save -->
