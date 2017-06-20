@@ -29,7 +29,7 @@ public class OperaController {
     @Autowired
     TecnicaService tecnicaService;
 
-    @GetMapping("/aggiunta")
+    @GetMapping("/aggiungi")
     public String aggiungiOpera(Model model) {
         model.addAttribute("autori", autoreService.get());
         model.addAttribute("tecniche", tecnicaService.get());
@@ -37,7 +37,7 @@ public class OperaController {
         return "formOperaSave";
     }
 
-    @PostMapping("/aggiunta")
+    @PostMapping("/aggiungi")
     public String salvaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId) {
         if (bindingResult.hasErrors() || file.isEmpty())
         {

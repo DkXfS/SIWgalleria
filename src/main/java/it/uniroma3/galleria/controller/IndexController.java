@@ -75,4 +75,10 @@ public class IndexController {
         model.addAttribute("nazionalitas", nazionalitaService.get());
         return "index";
     }
+
+    @GetMapping("/login")
+    public String redirect2SpringSecurityLogin(){ return "login"; }
+
+    //@PostMapping("/logout")
+    //public String redirect2SpringSecurityLogout(){ return "logout"; }
 }
