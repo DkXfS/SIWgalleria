@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
@@ -21,8 +18,8 @@ import javax.validation.Valid;
  */
 
 @Controller
-public class OperaController
-{
+@RequestMapping("/opera")
+public class OperaController {
     @Autowired
     AutoreService autoreService;
 
@@ -33,22 +30,19 @@ public class OperaController
     TecnicaService tecnicaService;
 
     @GetMapping("/addPainting")
-    public String aggiungiOpera(Model model)
-    {
+    public String aggiungiOpera(Model model) {
         model.addAttribute("autori", autoreService.get());
         model.addAttribute("tecniche", tecnicaService.get());
-        model.addAttribute("opera",new Opera());
+        model.addAttribute("opera", new Opera());
         return "aggiungiOpera";
     }
 
-    @PostMapping("/salva")
-    public String salvaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId)
-    {
-        if(bindingResult.hasErrors())
-        {
+    @PostMapping("/save")
+    public String salvaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("autori", autoreService.get());
             model.addAttribute("tecniche", tecnicaService.get());
-            model.addAttribute("opera",opera);
+            model.addAttribute("opera", opera);
         }
         opera.setAutore(autoreService.find(autoreId));
         opera.setTecnica(tecnicaService.find(tecnicaId));
@@ -56,15 +50,33 @@ public class OperaController
         return "fineAggiuntaOpera";
     }
 
-    @GetMapping("/delete/{id}")
-    public String cancellaQuadro(@PathVariable long id, Model model){
+    @GetMapping("/elimina/{id}")
+    public String cancellaOpera(@PathVariable long id, Model model) {
         operaService.removeThroughId(id);
-        model.addAttribute("opere",operaService.get());
-        return "admin/welcome";
+        model.addAttribute("opere", operaService.get());
+        return "index";
+    }
+
+    @GetMapping("/modifica/{id}")
+    public String modificaOpera(@PathVariable long id, Model model)
+    {
+        model.addAttribute("opera", operaService.find(id));
+        model.addAttribute("autori", autoreService.get());
+        model.addAttribute("tecniche", tecnicaService.get());
+        return "aggiungiOpera";
+    }
+
+    @PostMapping("/modifica/{id}")
+    public String salvaModificaOpera(@PathVariable long id, @RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId)
+    {
+
+        return dettagliOpera(id, model);
+    }
+
+    @GetMapping("/{id}")
+    public String dettagliOpera(@PathVariable long id, Model model)
+    {
+        model.addAttribute("opera", operaService.find(id));
+        return "visualizzazioneOpera";
     }
 }
-
-
-
-
-

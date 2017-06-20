@@ -37,13 +37,13 @@ public class OperaService {
         String imageName = String.valueOf(opera.getId());
         saveImage(imageName, file);
 
-        savedOpera.setImageUri("/pictures/" + imageName);
+        savedOpera.setImageUri("/img/" + imageName);
         return repo.save(savedOpera);
 
     }
 
     private void saveImage(String filename, MultipartFile image) {
-        File file = new File(servletContext.getRealPath("/") + "/pictures/"
+        File file = new File(servletContext.getRealPath("/") + "/img/"
                 + filename + ".jpg");
 
         try {
