@@ -31,7 +31,7 @@
 
     <div class="well well-sm">
 
-
+        <form action="#" th:action="@{getByParam}" th:object="${dummy}" method="get">
             <div class="btn-group">
                 <a href="#" id="lista" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
             </span>Lista</a>
@@ -40,14 +40,19 @@
                 <a  sec:authorize="hasRole('ADMIN')" href="protected/aggiungiOpera" id="griglia" class="btn btn-default btn-sm"><span
                         class="glyphicon glyphicon-picture"></span>Inserisci Opera</a>
 
+                <label style="float: right; margin-left: 30px;;">
+                    <select th:field="*{tecnica}" name="tecnica">
+                        <option th:each="tecnica : ${tecniche}" th:value="${tecnica.id}" th:text="${tecnica.nome}"></option>
+                    </select>
+                    <!-- <select th:field="*{nazionalita}" name="nazionalita">
+                        <option th:each="nazionalita : ${nazionalitas}" th:value="${nazionalita.id}" th:text="${nazionalita.nome}"></option>
+                    </select> -->
+
+                    <input class="btn btn-sm" type="submit" value="Invia"/>
+                </label>
             </div>
+        </form >
     </div>
-
-
-
-
-
-
 
 
     <div   id="opere" class="row list-group">

@@ -46,6 +46,7 @@ public class IndexController {
         //model.addAttribute("autori", autoreService.get());
         model.addAttribute("tecniche", tecnicaService.get());
         model.addAttribute("nazionalitas", nazionalitaService.get());
+        model.addAttribute("dummy",new Opera());
          List <Opera> oldd = new ArrayList<Opera>();
         //Opera op = new Opera("nome", new Autore("NomeAutore", "CognomeAutore", new Nazionalita(), new Date(),new Date()), null, "Lorem ipsun dolor sit amen e poi un altra frase che descrive l'opera in tutto e per tutto",1900,20,30);
         //op.setId(0);
@@ -61,18 +62,19 @@ public class IndexController {
     }
 
     @GetMapping("/getByParam")
-    public String homeWithSearch(Model model, @RequestParam long tecnicaId, @RequestParam long nazionalitaId)
+    public String homeWithSearch(Model model, @RequestParam long tecnica, @RequestParam long nazionalita)
     {
         List<Opera> allOpere=operaService.get();
         for(int i=0; i<allOpere.size(); i++)
         {
             Opera iteratedOpera=allOpere.get(i);
-            if(iteratedOpera.getTecnica().getId()!=tecnicaId && iteratedOpera.getAutore().getNazionalita().getId()!=nazionalitaId)
+            if(iteratedOpera.getTecnica().getId()!=tecnica && iteratedOpera.getAutore().getNazionalita().getId()!=nazionalita)
                 allOpere.remove(iteratedOpera);
         }
         model.addAttribute("opere", allOpere);
         model.addAttribute("tecniche", tecnicaService.get());
         model.addAttribute("nazionalitas", nazionalitaService.get());
+
         return "index";
     }
 
