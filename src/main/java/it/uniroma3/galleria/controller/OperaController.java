@@ -28,7 +28,7 @@ public class OperaController {
     @Autowired
     TecnicaService tecnicaService;
 
-    @GetMapping("/protected/aggiungi")
+    @GetMapping("/protected/aggiungiOpera")
     public String aggiungiOpera(Model model) {
         model.addAttribute("autori", autoreService.get());
         model.addAttribute("tecniche", tecnicaService.get());
@@ -36,7 +36,7 @@ public class OperaController {
         return "formOperaSave";
     }
 
-    @PostMapping("/protected/aggiungi")
+    @PostMapping("/protected/aggiungiOpera")
     public String salvaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId) {
         if (bindingResult.hasErrors() || file.isEmpty())
         {
@@ -52,14 +52,14 @@ public class OperaController {
         return dettagliOperaDopoSave(operaSalvata,model);
     }
 
-    @GetMapping("/protected/elimina/{id}")
+    @GetMapping("/protected/eliminaOpera/{id}")
     public String cancellaOpera(@PathVariable long id, Model model) {
         operaService.removeThroughId(id);
         model.addAttribute("opere", operaService.get());
         return "index";
     }
 
-    @GetMapping("/protected/modifica/{id}")
+    @GetMapping("/protected/modificaOpera/{id}")
     public String modificaOpera(@PathVariable long id, Model model)
     {
         model.addAttribute("opera", operaService.find(id));
@@ -68,7 +68,7 @@ public class OperaController {
         return "formOperaUpdate";
     }
 
-    @PostMapping("/protected/modifica")
+    @PostMapping("/protected/modificaOpera")
     public String salvaModificaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId)
     {
         if (bindingResult.hasErrors() || file.isEmpty())
