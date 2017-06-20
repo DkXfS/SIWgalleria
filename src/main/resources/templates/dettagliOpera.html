@@ -11,7 +11,34 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
 
-    <link href="css/main.css" th:href="@{css/main.css}" rel="stylesheet"/>
+    <style>
+        .contcenter{
+
+
+            background-color: #424242;
+            height: 100%;
+            width: 100%;
+            font-family: helvetica;
+            overflow: hidden;
+            position:fixed;
+            top:0;
+            left:0;
+        }
+
+        .centered  {
+            max-width: 700px;
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left:10px;
+            padding-right:10px;
+        }
+
+    </style>
 
 
 </head>
@@ -19,16 +46,18 @@
 <div class="contcenter">
     <div class="centered">
 
-<div class="list-group">
+    <div class="list-group">
     <a class="list-group-item">Nome: <b th:text="${opera.titolo}"></b></a>
     <a class="list-group-item">Anno: <b th:text="${opera.anno}"></b></a>
     <a class="list-group-item">Altezza: <b th:text="${opera.altezza}"></b></a>
     <a class="list-group-item">Larghezza: <b th:text="${opera.larghezza}"></b></a>
     <a class="list-group-item">Autore: <b th:text="${opera.autore.name + ' ' +opera.autore?.cognome}"></b></a>
     <a class="list-group-item">Tecnica: <b th:text="${opera.tecnica?.nome}"></b></a>
-</div>
+    </div>
+        <a href="/" style="position: relative; bottom: 100px;">Torna all'indice</a>
 
     </div>
+
 </div>
 </body>
 </html>

@@ -39,6 +39,8 @@
                 <a href="#" id="lista" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
             </span>Lista</a> <a href="#" id="griglia" class="btn btn-default btn-sm"><span
                     class="glyphicon glyphicon-th"></span>Griglia</a>
+
+                <div class="btn-corner" sec:authorize="hasRole('ADMIN')"> <a class="btn btn-default" href="protected/aggiungiOpera">Aggiungi Opera</a></div>
             </div>
             <div class="form-group">
 

@@ -37,7 +37,7 @@ public class OperaController {
     }
 
     @PostMapping("/protected/aggiungiOpera")
-    public String salvaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId) {
+    public String salvaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autore, @RequestParam long tecnica) {
         if (bindingResult.hasErrors() || file.isEmpty())
         {
             if(file.isEmpty())
@@ -46,14 +46,15 @@ public class OperaController {
             model.addAttribute("tecniche", tecnicaService.get());
             return "formOperaSave";
         }
-        opera.setAutore(autoreService.find(autoreId));
-        opera.setTecnica(tecnicaService.find(tecnicaId));
+        opera.setAutore(autoreService.find(autore));
+        opera.setTecnica(tecnicaService.find(tecnica));
         Opera operaSalvata=operaService.save(opera, file);
-        return dettagliOperaDopoSave(operaSalvata,model);
+        return "dettagliOpera";
     }
 
     @GetMapping("/protected/eliminaOpera/{id}")
     public String cancellaOpera(@PathVariable long id, Model model) {
+        System.out.println("GetMap eliminaOpera id: "+id);
         operaService.removeThroughId(id);
         model.addAttribute("opere", operaService.get());
         return "index";
@@ -68,21 +69,24 @@ public class OperaController {
         return "formOperaUpdate";
     }
 
-    @PostMapping("/protected/modificaOpera")
-    public String salvaModificaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autoreId, @RequestParam long tecnicaId)
+    @PostMapping("/protected/modificaOpera") //@RequestParam("file") MultipartFile file
+    public String salvaModificaOpera( Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autore, @RequestParam long tecnica)
     {
-        if (bindingResult.hasErrors() || file.isEmpty())
+
+        if (bindingResult.hasErrors())// || file.isEmpty())
         {
-            if(file.isEmpty())
-                model.addAttribute("immaginegNonInserita",true);
+            //if(file.isEmpty())
+                //model.addAttribute("immaginegNonInserita",true);
             model.addAttribute("autori", autoreService.get());
             model.addAttribute("tecniche", tecnicaService.get());
             return "formOperaUpdate";
         }
-        opera.setAutore(autoreService.find(autoreId));
-        opera.setTecnica(tecnicaService.find(tecnicaId));
-        Opera operaSalvata=operaService.save(opera, file);
-        return dettagliOperaDopoSave(operaSalvata,model);
+        opera.setAutore(autoreService.find(autore));
+        opera.setTecnica(tecnicaService.find(tecnica));
+        Opera operaSalvata=operaService.save(opera);//, file);
+
+        //model.addAttribute("opera", operaService.find(id));
+        return "dettagliOpera";
     }
 
     @GetMapping("/opera/{id}")
@@ -92,9 +96,5 @@ public class OperaController {
         return "dettagliOpera";
     }
 
-    public String dettagliOperaDopoSave(Opera opera, Model model)
-    {
-        model.addAttribute("opera", opera);
-        return "dettagliOpera";
-    }
+
 }

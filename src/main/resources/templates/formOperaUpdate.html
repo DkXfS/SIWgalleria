@@ -13,8 +13,8 @@
 <div class="container container-custom">
     <h2 align="center">Modifica opera</h2>
     <br/>
-    <form action="#" th:action="@{/protected/modificaOpera}" th:object="${opera}" enctype="multipart/form-data"
-          method="post">
+
+    <form action="#" th:action="@{/protected/modificaOpera}" th:object="${opera}"  method="POST"><!-- enctype="multipart/form-data"-->
         <div class="row">
             <div class="form-group col-sm-12">
                 <label class="col-sm-2 control-label">Nome opera:</label>
@@ -77,16 +77,7 @@
                 <div class="col-sm-2"></div>
             </div>
         </div>
-        <div class="row">
-            <input type="hidden" name="id" th:field="*{id}" th:value="${opera.id}"/>
-            <div class="form-group col-sm-12">
-                <label class="col-sm-2 control-label">Carica una immagine (400x300):</label>
-                <div class="col-sm-8">
-                    <input type="file" name="file"/>
-                </div>
-                <div class="col-sm-2" th:if="${imgNonInserita}">Mandatory field</div>
-            </div>
-        </div>
+
         <div class="row" align="center">
             <div class="form-group col-sm-12">
                 <input class="btn btn-primary" type="submit" value="Invia"/>
