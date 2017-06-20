@@ -74,8 +74,8 @@
                            <!-- <a th:href="@{/opera/{id}(id=${opera.id})}">Dettagli</a>-->
                         </div>
                         <div class="btn-corner" sec:authorize="hasRole('ADMIN')">
-                            <a class="btn btn-default" th:href="@{/opera/modifica/{id}(id=${opera.id})}">Modifica</a>
-                            <a class="btn btn-danger" th:href="@{/opera/elimina/{id}(id=${opera.id})}">Elimina</a>
+                            <a class="btn btn-default" th:href="@{/protected/modificaOpera/{id}(id=${opera.id})}">Modifica</a>
+                            <a class="btn btn-danger" th:href="@{/protected/eliminaOpera/{id}(id=${opera.id})}">Elimina</a>
                         </div>
                     </div>
                 </div>

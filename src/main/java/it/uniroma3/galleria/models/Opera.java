@@ -27,9 +27,9 @@ public class Opera {
 	
 	private int anno;
 	
-	private float altezza;
+	private double altezza;
 
-	private float lunghezza;
+	private double larghezza;
 
 	private String descrizione;
 
@@ -44,7 +44,7 @@ public class Opera {
 		this.tecnica=technique;
 		this.anno=anno;
 		this.altezza=height;
-		this.lunghezza=lenght;
+		this.larghezza=lenght;
 		this.descrizione = descr;
 	}
 	
@@ -86,13 +86,13 @@ public class Opera {
 		this.anno = anno;
 	}
 
-	public float getAltezza() {return altezza;}
+	public double getAltezza() {return altezza;}
 
-	public void setAltezza(float altezza) {this.altezza = altezza;}
+	public void setAltezza(double altezza) {this.altezza = altezza;}
 
-	public float getLunghezza() {return lunghezza;}
+	public double getLarghezza() {return larghezza;}
 
-	public void setLunghezza(float lunghezza) {this.lunghezza=lunghezza;}
+	public void setLarghezza(double lunghezza) {this.larghezza=lunghezza;}
 
 	public String getImageUri() {return imageUri;}
 

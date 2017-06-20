@@ -44,7 +44,7 @@
 .item.list-group-item:before, .item.list-group-item:after
 {
     display: table;
-    content: " ";
+    content: " " ;
 }
 
 .item.list-group-item img
@@ -77,4 +77,41 @@
     position: absolute;
     bottom: 30px;
     right: 30px;
+}
+
+.contcenter{
+
+
+    background-color: #424242;
+    height: 100%;
+    width: 100%;
+    font-family: helvetica;
+    overflow: hidden;
+    position:fixed;
+    top:0;
+    left:0;
+}
+
+.form-centered = {
+    max-width: 700px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 45px;
+    text-align: center;
+    border-radius:5px;
 }
