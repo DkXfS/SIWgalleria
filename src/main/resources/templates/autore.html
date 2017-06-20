@@ -2,43 +2,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"/>
-    <title>Siw Galleria</title>
+    <title>Siw Galleria - Autore</title>
 
-
-
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
-
-          rel="stylesheet" media="screen" />
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
 
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
 
-    />
+    <style>
+        .contcenter{
 
-    <link href="css/main.css" th:href="@{css/main.css}" rel="stylesheet"/>
+
+            background-color: #424242;
+            height: 100%;
+            width: 100%;
+            font-family: helvetica;
+            overflow: hidden;
+            position:fixed;
+            top:0;
+            left:0;
+        }
+
+        .centered  {
+            max-width: 700px;
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left:10px;
+            padding-right:10px;
+        }
+
+    </style>
 
 
 </head>
 <body>
-<div class="container">
-    <div class="contcenter">
+<div class="contcenter">
+    <div class="centered">
 
-        <div class="centered">
+        <div class="list-group">
+            <a class="list-group-item">Nome: <b th:text="${autore.nome}"></b></a>
+            <a class="list-group-item">Cognome: <b th:text="${autore.cognome}"></b></a>
+            <a class="list-group-item">Nazionalita: <b th:text="${autore.nazionalita}"></b></a>
+            <a class="list-group-item">Nascita: <b th:text="${autore.nascita}"></b></a>
+            <a class="list-group-item">Morte: <b th:text="${autore.morte}"></b></a>
 
-            <div class="col-sm-6 col-md-6 col-xs-12 ">
-                <img src="http://placehold.it/400x250/000/fff" style="height:200px; " />
-            </div>
-
-            <div class="col-sm-6 col-md-6 col-xs-12">
-
-                <h3>Hello World</h3>
-                <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam placerat, velit a fermentum fermentum, mi felis vehicula justo, a dapibus quam augue non massa.   </p>
-            </div>
+            <a href="/" >Torna all'indice</a>
         </div>
 
+
     </div>
+
 </div>
 </body>
 </html>
