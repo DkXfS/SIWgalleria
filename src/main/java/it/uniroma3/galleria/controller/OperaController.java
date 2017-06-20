@@ -1,5 +1,6 @@
 package it.uniroma3.galleria.controller;
 
+import it.uniroma3.galleria.models.Dummy;
 import it.uniroma3.galleria.models.Opera;
 import it.uniroma3.galleria.service.AutoreService;
 import it.uniroma3.galleria.service.OperaService;
@@ -57,6 +58,7 @@ public class OperaController {
         System.out.println("GetMap eliminaOpera id: "+id);
         operaService.removeThroughId(id);
         model.addAttribute("opere", operaService.get());
+        model.addAttribute("dummy",new Dummy());
         return "index";
     }
 

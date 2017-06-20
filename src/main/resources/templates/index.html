@@ -44,9 +44,9 @@
                     <select th:field="*{tecnica}" name="tecnica">
                         <option th:each="tecnica : ${tecniche}" th:value="${tecnica.id}" th:text="${tecnica.nome}"></option>
                     </select>
-                    <!-- <select th:field="*{nazionalita}" name="nazionalita">
+                    <select th:field="*{nazionalita}" name="nazionalita">
                         <option th:each="nazionalita : ${nazionalitas}" th:value="${nazionalita.id}" th:text="${nazionalita.nome}"></option>
-                    </select> -->
+                    </select>
 
                     <input class="btn btn-sm" type="submit" value="Invia"/>
                 </label>
