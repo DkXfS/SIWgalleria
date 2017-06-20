@@ -24,8 +24,8 @@ public class Autore {
 	@ManyToOne//(cascade = {CascadeType.PERSIST})
 	private Nazionalita nazionalita;
 	
-	@OneToMany(mappedBy="autore", cascade = {CascadeType.PERSIST})
-	private List <Opera> opere;
+	//@OneToMany(mappedBy="autore", cascade = {CascadeType.PERSIST})
+	//private List <Opera> opere;
 	
 	@Temporal(TemporalType.DATE)
 	private Date nascita;
@@ -41,7 +41,7 @@ public class Autore {
 		this.nazionalita=naz;
 		this.nascita=birth;
 		this.morte=death;
-		this.opere=new ArrayList<>();
+		//this.opere=new ArrayList<>();
 	}
 
 	public long getId() {
@@ -97,17 +97,18 @@ public class Autore {
 		this.cognome = cognome;
 	}
 	
-	public void addOpera(Opera opera){ this.opere.add(opera);}
+	//public void addOpera(Opera opera){ this.opere.add(opera);}
 
-	public List<Opera> getOpere(){ return this.opere; }
+	//public List<Opera> getOpere(){ return this.opere; }
 
 	public boolean equals(Autore autore)
 	{
 		boolean whetherEquals=false;
 		if(autore.getName().equals(this.name) && this.cognome.equals(autore.getCognome()) &&
 				this.nazionalita.getNome().equals(autore.getNazionalita().getNome()) &&
-				this.nascita.compareTo(autore.getNascita())==0 &&
-				this.opere.get(0).equals(autore.getOpere().get(0)))
+				this.nascita.compareTo(autore.getNascita())==0
+				//&& this.opere.get(0).equals(autore.getOpere().get(0))
+		   )
 			whetherEquals=true;
 		return whetherEquals;
 	}

@@ -3,6 +3,7 @@ package it.uniroma3.galleria.controller;
 import it.uniroma3.galleria.models.Dummy;
 import it.uniroma3.galleria.models.Opera;
 import it.uniroma3.galleria.service.AutoreService;
+import it.uniroma3.galleria.service.NazionalitaService;
 import it.uniroma3.galleria.service.OperaService;
 import it.uniroma3.galleria.service.TecnicaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class OperaController {
     @Autowired
     TecnicaService tecnicaService;
 
+    @Autowired
+    NazionalitaService nazionalitaService;
+
     @GetMapping("/protected/aggiungiOpera")
     public String aggiungiOpera(Model model) {
         model.addAttribute("autori", autoreService.get());
@@ -39,10 +43,10 @@ public class OperaController {
 
     @PostMapping("/protected/aggiungiOpera")
     public String salvaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autore, @RequestParam long tecnica) {
-        if (bindingResult.hasErrors() || file.isEmpty())
+        if (bindingResult.hasErrors())// || file.isEmpty()
         {
-            if(file.isEmpty())
-                model.addAttribute("immaginegNonInserita",true);
+            //if(file.isEmpty())
+            //    model.addAttribute("immaginegNonInserita",true);
             model.addAttribute("autori", autoreService.get());
             model.addAttribute("tecniche", tecnicaService.get());
             return "formOperaSave";
@@ -50,7 +54,7 @@ public class OperaController {
         opera.setAutore(autoreService.find(autore));
         opera.setTecnica(tecnicaService.find(tecnica));
         Opera operaSalvata=operaService.save(opera, file);
-        return "dettagliOpera";
+        return "redirect:/opera/"+operaSalvata.getId()+"";
     }
 
     @GetMapping("/protected/eliminaOpera/{id}")
@@ -59,7 +63,9 @@ public class OperaController {
         operaService.removeThroughId(id);
         model.addAttribute("opere", operaService.get());
         model.addAttribute("dummy",new Dummy());
-        return "index";
+        model.addAttribute("tecniche", tecnicaService.get());
+        model.addAttribute("nazionalitas", nazionalitaService.get());
+        return "redirect:/home";
     }
 
     @GetMapping("/protected/modificaOpera/{id}")
@@ -75,10 +81,10 @@ public class OperaController {
     public String salvaModificaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autore, @RequestParam long tecnica)
     {
 
-        if (bindingResult.hasErrors() || file.isEmpty())
+        if (bindingResult.hasErrors()) // || file.isEmpty()
         {
-            if(file.isEmpty())
-                model.addAttribute("immaginegNonInserita",true);
+            //if(file.isEmpty())
+            //    model.addAttribute("immaginegNonInserita",true);
             model.addAttribute("autori", autoreService.get());
             model.addAttribute("tecniche", tecnicaService.get());
             return "formOperaUpdate";
@@ -88,7 +94,7 @@ public class OperaController {
         Opera operaSalvata=operaService.save(opera, file);
 
         //model.addAttribute("opera", operaService.find(id));
-        return "dettagliOpera";
+        return "redirect:/opera/"+operaSalvata.getId()+"";
     }
 
     @GetMapping("/opera/{id}")

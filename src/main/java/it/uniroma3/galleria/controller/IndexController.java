@@ -41,7 +41,7 @@ public class IndexController {
     @Autowired
     private NazionalitaService nazionalitaService;
 
-    @GetMapping(value={"/", "/index"})
+    @GetMapping(value={"/", "/index","/home"})
     public String home(Model model)
     {
         //model.addAttribute("autori", autoreService.get());
