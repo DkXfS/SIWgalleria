@@ -45,10 +45,6 @@ public class OperaService implements ServletContextAware{
 
     private void saveImage(String filename, MultipartFile image) {
 
-        System.out.println("SAVE IMAGE");
-        System.out.println(servletContext.getRealPath("/") + "/img/" + filename + ".jpg");
-        System.out.println("SAVE IMAGE END");
-
         File file = new File(servletContext.getRealPath("/") + "/img/" + filename + ".jpg");
 
         System.out.println(servletContext.getRealPath("/") + "/img/" + filename + ".jpg");

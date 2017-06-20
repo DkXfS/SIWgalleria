@@ -26,7 +26,7 @@
 <div class="container">
 
     <div id="imgheader">
-        <img src="logo.png" alt="siw gallery" class="img-responsive center-block" />
+        <a href="/" alt="Torna alla Home"> <img src="logo.png" alt="siw gallery" class="img-responsive center-block" /></a>
     </div>
 
     <div class="well well-sm">
@@ -82,11 +82,11 @@
 
     </div>
 
-
+    <footer class="footer">
+        <b>Panthappallil - Littera </b> <a class="btn btn-default btn-sm" href="/login">Login</a> <a class="btn btn-default btn-sm" sec:authorize="hasRole('ADMIN')" href="/logout">Logout</a>
+    </footer>
 </div>
-<footer class="footer">
-    <p>&copy; </p>
-</footer>
+
 <script>
     $(document).ready(function() {
         $('#lista').click(function(event){event.preventDefault();$('#opere .item').addClass('list-group-item');});

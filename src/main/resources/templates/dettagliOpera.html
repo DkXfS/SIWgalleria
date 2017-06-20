@@ -51,7 +51,7 @@
     <a class="list-group-item">Anno: <b th:text="${opera.anno}"></b></a>
     <a class="list-group-item">Altezza: <b th:text="${opera.altezza}"></b></a>
     <a class="list-group-item">Larghezza: <b th:text="${opera.larghezza}"></b></a>
-    <a class="list-group-item">Autore: <b th:text="${opera.autore.name + ' ' +opera.autore?.cognome}"></b></a>
+    <a class="list-group-item" th:href="@{/autore/{id}(id=${opera.autore.id})}">Autore: <b th:text="${opera.autore.name + ' ' +opera.autore?.cognome}"></b></a>
     <a class="list-group-item">Tecnica: <b th:text="${opera.tecnica?.nome}"></b></a>
         <a href="/" >Torna all'indice</a>
     </div>
