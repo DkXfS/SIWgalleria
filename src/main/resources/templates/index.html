@@ -40,7 +40,7 @@
                 <a  sec:authorize="hasRole('ADMIN')" href="protected/aggiungiOpera" id="griglia" class="btn btn-default btn-sm"><span
                         class="glyphicon glyphicon-picture"></span>Inserisci Opera</a>
 
-                <label style="float: right; margin-left: 30px;;">
+                <label style="float: right; margin-left: 40px;;">
                     <select th:field="*{tecnica}" name="tecnica">
                         <option th:each="tecnica : ${tecniche}" th:value="${tecnica.id}" th:text="${tecnica.nome}"></option>
                     </select>
@@ -48,7 +48,7 @@
                         <option th:each="nazionalita : ${nazionalitas}" th:value="${nazionalita.id}" th:text="${nazionalita.nome}"></option>
                     </select>
 
-                    <input class="btn btn-sm" type="submit" value="Invia"/>
+                    <input class="btn btn-default btn-sm" type="submit" value="Invia"/>
                 </label>
             </div>
         </form >
