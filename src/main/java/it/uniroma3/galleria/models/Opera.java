@@ -1,6 +1,9 @@
 package it.uniroma3.galleria.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 import java.util.Date;
 
@@ -16,7 +19,9 @@ public class Opera {
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	
+
+    @NotBlank(message = "è richiesta una stringa non nulla e non vuota")
+    @Column(nullable=false)
 	private String titolo;
 	
 	@ManyToOne
@@ -24,12 +29,13 @@ public class Opera {
 	
 	@ManyToOne//(cascade = {CascadeType.PERSIST})
 	private Tecnica tecnica;
-	
-	private int anno;
-	
-	private double altezza;
 
-	private double larghezza;
+    @Min(value = 1, message = "Inserire un valore maggiore di 0")
+	private int anno;
+
+    private double altezza;
+
+    private double larghezza;
 
 	private String descrizione;
 
