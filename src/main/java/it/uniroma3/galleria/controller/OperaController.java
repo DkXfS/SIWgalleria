@@ -69,21 +69,21 @@ public class OperaController {
         return "formOperaUpdate";
     }
 
-    @PostMapping("/protected/modificaOpera") //@RequestParam("file") MultipartFile file
-    public String salvaModificaOpera( Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autore, @RequestParam long tecnica)
+    @PostMapping("/protected/modificaOpera")
+    public String salvaModificaOpera(@RequestParam("file") MultipartFile file, Model model, @Valid Opera opera, BindingResult bindingResult, @RequestParam long autore, @RequestParam long tecnica)
     {
 
-        if (bindingResult.hasErrors())// || file.isEmpty())
+        if (bindingResult.hasErrors() || file.isEmpty())
         {
-            //if(file.isEmpty())
-                //model.addAttribute("immaginegNonInserita",true);
+            if(file.isEmpty())
+                model.addAttribute("immaginegNonInserita",true);
             model.addAttribute("autori", autoreService.get());
             model.addAttribute("tecniche", tecnicaService.get());
             return "formOperaUpdate";
         }
         opera.setAutore(autoreService.find(autore));
         opera.setTecnica(tecnicaService.find(tecnica));
-        Opera operaSalvata=operaService.save(opera);//, file);
+        Opera operaSalvata=operaService.save(opera, file);
 
         //model.addAttribute("opera", operaService.find(id));
         return "dettagliOpera";

@@ -55,8 +55,8 @@
         <div th:each="opera : ${opere}" class="item  col-xs-4 col-lg-4">
             <div class="thumbnail">
 
-                <a th:href="@{/opera/{id}(id=${opera.id})}"><img class="group list-group-image" src="http://placehold.it/400x250/000/fff"  alt="immagine opera" /> </a>
-                    <!-- th:src="@{/immagini/{id}(id=${opera.id})}" -->
+                <a th:href="@{/opera/{id}(id=${opera.id})}"><img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:src="@{/img/{id}(id=${opera.id})}"  alt="immagine opera" /> </a>
+                    <!--  -->
 
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading" th:text="${opera.titolo}"></h4>

@@ -5,6 +5,7 @@ import it.uniroma3.galleria.repository.OperaRepository;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 
 @Service
-public class OperaService {
+public class OperaService implements ServletContextAware{
 
     @Autowired
     private OperaRepository repo;
@@ -31,21 +32,26 @@ public class OperaService {
     public Opera find(long Id) { return repo.findOne(Id); }
 
     public Opera save(Opera opera) { return repo.save(opera); }
+    
+    public Opera save(Opera Opera, MultipartFile file) {
+        Opera OperaSaved = repo.save(Opera);
+        String nameImage = String.valueOf(Opera.getId());
+        saveImage(nameImage, file);
 
-    public Opera save(Opera opera, MultipartFile file) {
-        Opera savedOpera = repo.save(opera);
-        String imageName = String.valueOf(opera.getId());
-        saveImage(imageName, file);
 
-        savedOpera.setImageUri("/img/" + imageName);
-        return repo.save(savedOpera);
+        return repo.save(OperaSaved);
 
     }
 
     private void saveImage(String filename, MultipartFile image) {
-        File file = new File(servletContext.getRealPath("/") + "/img/"
-                + filename + ".jpg");
 
+        System.out.println("SAVE IMAGE");
+        System.out.println(servletContext.getRealPath("/") + "/img/" + filename + ".jpg");
+        System.out.println("SAVE IMAGE END");
+
+        File file = new File(servletContext.getRealPath("/") + "/img/" + filename + ".jpg");
+
+        System.out.println(servletContext.getRealPath("/") + "/img/" + filename + ".jpg");
         try {
             FileUtils.writeByteArrayToFile(file, image.getBytes());
         } catch (IOException e) {
@@ -54,4 +60,9 @@ public class OperaService {
     }
 
     public void removeThroughId(long Id) { repo.removeById(Id); }
+
+    @Override
+    public void setServletContext(ServletContext servletContext) {
+        this.servletContext = servletContext;
+    }
 }
