@@ -67,7 +67,8 @@
                     <!-- th:src="@{/immagini/{id}(id=${opera.id})}" -->
 
                 <div class="caption">
-                    <h4 class="group inner list-group-item-heading" th:text="${opera.NomeAutoreCompleto}"></h4>
+                    <h4 class="group inner list-group-item-heading" th:text="${opera.titolo}"></h4>
+                    <p class="group inner list-group-item-text" th:text="${opera.NomeAutoreCompleto}"></p>
                     <p class="group inner list-group-item-text" th:text="${opera.descrizione}"></p>
                     <div class="row">
                         <div class="col-xs-12 col-md-6">

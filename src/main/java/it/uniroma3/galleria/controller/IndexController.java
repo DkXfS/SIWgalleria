@@ -47,13 +47,13 @@ public class IndexController {
         model.addAttribute("tecniche", tecnicaService.get());
         model.addAttribute("nazionalitas", nazionalitaService.get());
          List <Opera> oldd = new ArrayList<Opera>();
-        Opera op = new Opera("nome", new Autore("NomeAutore", "CognomeAutore", new Nazionalita(), new Date(),new Date()), null, "Lorem ipsun dolor sit amen e poi un altra frase che descrive l'opera in tutto e per tutto",1900,20,30);
-        op.setId(0);
-         oldd.add(op);
-        model.addAttribute("opere", oldd);
+        //Opera op = new Opera("nome", new Autore("NomeAutore", "CognomeAutore", new Nazionalita(), new Date(),new Date()), null, "Lorem ipsun dolor sit amen e poi un altra frase che descrive l'opera in tutto e per tutto",1900,20,30);
+        //op.setId(0);
+         //oldd.add(op);
+        //model.addAttribute("opere", oldd);
 
 
-        //model.addAttribute("opere", operaService.getOrdered());
+        model.addAttribute("opere", operaService.getOrdered());
 
 
 
