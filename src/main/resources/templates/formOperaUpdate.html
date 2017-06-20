@@ -54,7 +54,7 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-12">
-                <label class="col-sm-2 control-label">Altezza quadro(cm):</label>
+                <label class="col-sm-2 control-label">Altezza opera(cm):</label>
                 <div class="col-sm-8">
                     <input class="form-control" type="text" name="altezza" th:field="*{altezza}"/>
                 </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-12">
-                <label class="col-sm-2 control-label">Larghezza quadro(cm):</label>
+                <label class="col-sm-2 control-label">Larghezza opera(cm):</label>
                 <div class="col-sm-8">
                     <input class="form-control" type="text" name="larghezza" th:field="*{larghezza}"/>
                 </div>
@@ -97,7 +97,7 @@
             </div>
         </div>
         <div class="row">
-            <input type="hidden" name="id" th:field="*{id}" th:value="${quadro.id}"/>
+            <input type="hidden" name="id" th:field="*{id}" th:value="${opera.id}"/>
             <div class="form-group col-sm-12">
                 <label class="col-sm-2 control-label">Carica una immagine (400x300):</label>
                 <div class="col-sm-8">
